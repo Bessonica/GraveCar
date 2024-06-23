@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://dehsk33ctvve4"]
+
+[ext_resource type="Script" path="res://Scenes/Vehicle/Car01/car01.gd" id="1_3vuuq"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_5bfyl"]
+size = Vector3(0.5, 0.5, 1.5)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_70qkp"]
+points = PackedVector3Array(0.25, 0.25, 0.75, 0.25, -0.25, 0.75, 0.25, 0.25, -0.75, -0.25, 0.25, 0.75, -0.25, -0.25, 0.75, 0.25, -0.25, -0.75, -0.25, 0.25, -0.75, -0.25, -0.25, -0.75)
+
+[node name="Car01" type="RigidBody3D"]
+mass = 10.0
+script = ExtResource("1_3vuuq")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_5bfyl")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
+shape = SubResource("ConvexPolygonShape3D_70qkp")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, -2.3874e-08, 0.96199, 0.273086, 8.40998e-08, 0.273086, -0.96199, 0, 1.1193, -1.2598)

@@ -1,0 +1,82 @@
+[gd_scene load_steps=6 format=3 uid="uid://pi4h110vmq1k"]
+
+[ext_resource type="Script" path="res://Scenes/Vehicle/car.gd" id="1_6jc3a"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_xlh2b"]
+size = Vector3(1, 0.8, 4)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_csi8i"]
+points = PackedVector3Array(0.5, 0.4, 2, 0.5, -0.4, 2, 0.5, 0.4, -2, -0.5, 0.4, 2, -0.5, -0.4, 2, 0.5, -0.4, -2, -0.5, 0.4, -2, -0.5, -0.4, -2)
+
+[sub_resource type="BoxMesh" id="BoxMesh_sycdf"]
+size = Vector3(0.5, 0.5, 0.5)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_xtpop"]
+height = 0.5
+
+[node name="Car" type="VehicleBody3D"]
+center_of_mass_mode = 1
+center_of_mass = Vector3(0, 0.186809, 0.995302)
+script = ExtResource("1_6jc3a")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, -1.71391e-08, 0.980594, 0.196049, 8.57263e-08, 0.196049, -0.980594, -0.0250692, 2.33475, -2.85216)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0250692, 0.62003, 0)
+mesh = SubResource("BoxMesh_xlh2b")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0250692, 0.62003, 0)
+shape = SubResource("ConvexPolygonShape3D_csi8i")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.06973, -1.70889)
+mesh = SubResource("BoxMesh_sycdf")
+
+[node name="WheelBackRight" type="VehicleWheel3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.777695, 0, -0.980599)
+use_as_traction = true
+wheel_roll_influence = 0.01
+wheel_friction_slip = 8.0
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="WheelBackRight"]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("CylinderMesh_xtpop")
+skeleton = NodePath("../..")
+
+[node name="WheelBackLeft" type="VehicleWheel3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.741782, 0, -0.980599)
+use_as_traction = true
+wheel_roll_influence = 0.01
+wheel_friction_slip = 8.0
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="WheelBackLeft"]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("CylinderMesh_xtpop")
+skeleton = NodePath("../..")
+
+[node name="WheelFrontRight" type="VehicleWheel3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.755053, 0, 1.20201)
+use_as_steering = true
+wheel_roll_influence = 0.01
+wheel_friction_slip = 10.0
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="WheelFrontRight"]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0.0049907, 0, 0)
+mesh = SubResource("CylinderMesh_xtpop")
+skeleton = NodePath("../..")
+
+[node name="WheelFrontLeft" type="VehicleWheel3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.649511, 0, 1.24715)
+use_as_steering = true
+wheel_roll_influence = 0.01
+wheel_friction_slip = 10.0
+
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="WheelFrontLeft"]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("CylinderMesh_xtpop")
+skeleton = NodePath("../..")
+
+[node name="CenterOfMass" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0812635, 0.186809, 0.995302)

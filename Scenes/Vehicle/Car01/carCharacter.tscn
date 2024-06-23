@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3 uid="uid://das82usogce34"]
+
+[ext_resource type="Script" path="res://Scenes/Vehicle/Car01/carCharacter.gd" id="1_cbcoj"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_dcv1r"]
+size = Vector3(0.8, 0.5, 1.5)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_wg0al"]
+points = PackedVector3Array(0.4, 0.25, 0.75, 0.4, -0.25, 0.75, 0.4, 0.25, -0.75, -0.4, 0.25, 0.75, -0.4, -0.25, 0.75, 0.4, -0.25, -0.75, -0.4, 0.25, -0.75, -0.4, -0.25, -0.75)
+
+[sub_resource type="BoxMesh" id="BoxMesh_7l3hm"]
+size = Vector3(1, 0.6, 0.25)
+
+[node name="CarCharacter" type="CharacterBody3D"]
+wall_min_slide_angle = 0.654498
+script = ExtResource("1_cbcoj")
+
+[node name="CameraFocusPoint" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.390842, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_dcv1r")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("ConvexPolygonShape3D_wg0al")
+
+[node name="CameraPivot" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.95032, 0.311274, 0, -0.311274, 0.95032, 0, 1.81831, 2.87114)
+
+[node name="Camera3D" type="Camera3D" parent="CameraPivot"]
+transform = Transform3D(1, 0, 0, 0, 0.999799, -0.0200491, 0, 0.0200491, 0.999799, 0, 0, 0.177786)
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.279352, 0.627468)
+mesh = SubResource("BoxMesh_7l3hm")

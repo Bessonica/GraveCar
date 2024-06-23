@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://3kscd32jc1or"]
+
+[ext_resource type="Script" path="res://Scenes/Enemies/Enemy01/enemy01.gd" id="1_4ktk8"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_a3iic"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_40dms"]
+points = PackedVector3Array(0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5)
+
+[node name="EnemyTest" type="CharacterBody3D"]
+script = ExtResource("1_4ktk8")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_a3iic")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("ConvexPolygonShape3D_40dms")
