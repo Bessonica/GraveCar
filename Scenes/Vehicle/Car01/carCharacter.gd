@@ -42,19 +42,25 @@ func _unhandled_input(event):
 func _physics_process(delta):
 	
 	MoveForce += Input.get_axis(&"Forward", &"Backward") * global_transform.basis.z * delta * Speed
+	#print("move force = ", Input.get_axis(&"Forward", &"Backward"))
 	
 	#camera_pivot.global_position = camera_pivot.global_position.lerp(global_position, delta * 20.0)
 	#camera_pivot.transform = camera_pivot.transform.interpolate_with(transform, delta * 5.0)
 	# Add the gravity.
 
+		
 	if not is_on_floor():
 		MoveForce.y -= gravity * delta
 	else:
-		MoveForce.y = 0
+		if Input.is_action_just_pressed("Jump"):
+			MoveForce.y += 20
+		else:
+			MoveForce.y = 0
 	
 	#var gas = Input.get_axis(&"Forward", &"Backward")
+	#	TODO drift doesnt work right
 	var steering = Input.get_axis(&"Right", &"Left")
-	if (steering >= 0.8 || steering <= -0.8) && MoveForce.length() >= 8 && steering != 0:
+	if (steering >= 0.8 || steering <= -0.8) && MoveForce.length() >= 8 && steering != 0 && Input.is_action_pressed("Drift"):
 		isDrifting = true
 	elif steering:
 		isDrifting = false
@@ -82,12 +88,11 @@ func _physics_process(delta):
 			rotate(Vector3.UP, steering * steeringAmount * delta * steerAllow)
 			#MoveForce += -global_transform.basis.z *1.5 * delta
 			MoveForce = MoveForce.clamp(-MaxSpeedDrifting, MaxSpeedDrifting )
-	
-	#var direction = (transform.basis * Vector3(0, 0, gas)).normalized()
-
-	var steerAllow = lerp(0.0, MoveForce.length(), 0.08)
-	#print("steer allow = ", steerAllow)
-	rotate(Vector3.UP, steering * steeringAmount * delta * steerAllow )
+	else:
+		#var direction = (transform.basis * Vector3(0, 0, gas)).normalized()
+		var steerAllow = lerp(0.0, MoveForce.length(), 0.08)
+		#print("steer allow = ", steerAllow)
+		rotate(Vector3.UP, steering * steeringAmount * delta * steerAllow )
 	
 	#print("move force length norm = ", MoveForce.normalized().length())
 	#print("move force length = ", MoveForce.length())

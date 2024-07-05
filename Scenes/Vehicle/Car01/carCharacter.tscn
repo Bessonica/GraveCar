@@ -25,10 +25,11 @@ mesh = SubResource("BoxMesh_dcv1r")
 shape = SubResource("ConvexPolygonShape3D_wg0al")
 
 [node name="CameraPivot" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.95032, 0.311274, 0, -0.311274, 0.95032, 0, 1.81831, 2.87114)
+transform = Transform3D(1, 0, 0, 0, 0.95032, 0.311274, 0, -0.311274, 0.95032, 0, 0.0376461, 0.272136)
 
 [node name="Camera3D" type="Camera3D" parent="CameraPivot"]
-transform = Transform3D(1, 0, 0, 0, 0.999799, -0.0200491, 0, 0.0200491, 0.999799, 0, 0, 0.177786)
+transform = Transform3D(1, 0, 0, 0, 0.960543, -0.278133, 0, 0.278133, 0.960543, 0, 0.568476, 0.240319)
+current = true
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.279352, 0.627468)
