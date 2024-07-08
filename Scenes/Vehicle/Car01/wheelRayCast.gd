@@ -28,7 +28,7 @@ func _physics_process(delta):
 		
 		var dumperForce = car.springDamper * springVelocity
 		
-		var suspensionForce = basis.y * springForce
+		var suspensionForce = basis.y * (springForce+dumperForce)
 		previousSpringLength = springLength
 		
 		var point = Vector3(rayDest.x, rayDest.y+car.wheelRadius, rayDest.z)

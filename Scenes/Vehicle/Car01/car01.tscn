@@ -13,8 +13,8 @@ size = Vector3(1.59406, 0.546021, 3.09467)
 mass = 10.0
 center_of_mass_mode = 1
 script = ExtResource("1_3vuuq")
-springStrength = 200.0
-springDamper = 0.5
+springStrength = 100.0
+springDamper = 5.0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("BoxMesh_5bfyl")
