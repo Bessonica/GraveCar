@@ -1,44 +1,53 @@
-[gd_scene load_steps=4 format=3 uid="uid://dehsk33ctvve4"]
+[gd_scene load_steps=5 format=3 uid="uid://dehsk33ctvve4"]
 
 [ext_resource type="Script" path="res://Scenes/Vehicle/Car01/car01.gd" id="1_3vuuq"]
+[ext_resource type="Script" path="res://Scenes/Vehicle/Car01/wheelRayCast.gd" id="2_qosmn"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_5bfyl"]
-size = Vector3(0.5, 0.5, 1.5)
+size = Vector3(1.5, 0.4, 3)
 
-[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_70qkp"]
-points = PackedVector3Array(0.25, 0.25, 0.75, 0.25, -0.25, 0.75, 0.25, 0.25, -0.75, -0.25, 0.25, 0.75, -0.25, -0.25, 0.75, 0.25, -0.25, -0.75, -0.25, 0.25, -0.75, -0.25, -0.25, -0.75)
+[sub_resource type="BoxShape3D" id="BoxShape3D_g0v00"]
+size = Vector3(1.59406, 0.546021, 3.09467)
 
 [node name="Car01" type="RigidBody3D"]
 mass = 10.0
 center_of_mass_mode = 1
 script = ExtResource("1_3vuuq")
+springStrength = 200.0
+springDamper = 0.5
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("BoxMesh_5bfyl")
 
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
-shape = SubResource("ConvexPolygonShape3D_70qkp")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000946045, 0.00494385, 0.00918579)
+shape = SubResource("BoxShape3D_g0v00")
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(-1, 0, -8.74228e-08, -2.3874e-08, 0.96199, 0.273086, 8.40998e-08, 0.273086, -0.96199, 0, 1.1193, -1.2598)
+transform = Transform3D(0.976672, 0.0584682, -0.206622, 0, 0.962218, 0.27228, 0.214735, -0.265929, 0.939772, -1.27534, 1.65462, 6.25217)
 current = true
 
 [node name="Wheels" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0810548, 0)
 
 [node name="RayCast3DfrontLeft" type="RayCast3D" parent="Wheels"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2, -0.117359, 0.69)
-target_position = Vector3(0, -0.5, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.57, 0, -1.2)
+target_position = Vector3(0, -0.8, 0)
+script = ExtResource("2_qosmn")
 
 [node name="RayCast3D2frontRight" type="RayCast3D" parent="Wheels"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.2, -0.117359, 0.69)
-target_position = Vector3(0, -0.5, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.57, 0, -1.2)
+target_position = Vector3(0, -0.8, 0)
+script = ExtResource("2_qosmn")
 
 [node name="RayCast3D4backLeft" type="RayCast3D" parent="Wheels"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2, -0.117359, -0.681)
-target_position = Vector3(0, -0.5, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.57, 0, 1.2)
+target_position = Vector3(0, -0.8, 0)
+script = ExtResource("2_qosmn")
 
 [node name="RayCast3D3backRight" type="RayCast3D" parent="Wheels"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.2, -0.117359, -0.681)
-target_position = Vector3(0, -0.5, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.57, 0, 1.2)
+target_position = Vector3(0, -0.8, 0)
+script = ExtResource("2_qosmn")
 
 [node name="CenterOfMass" type="Node3D" parent="."]

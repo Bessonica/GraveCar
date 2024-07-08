@@ -13,6 +13,12 @@ var MaxSpeed = Vector3(300, 300, 300)
 @onready var whBackRight = $Wheels/RayCast3D3backRight
 
 
+@export_category("car properties")
+@export var suspensionRestDistance: float = 0.5
+@export var springStrength: float = 10
+@export var springDamper: float = 1
+@export var wheelRadius: float = 0.33
+
 var drag = 0.99
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -40,10 +46,14 @@ func _physics_process(delta):
 	#apply_force(MoveForce, whBackRight.position)
 	#rotate(Vector3.UP, steer*delta)
 	apply_torque(steer)
-	calcSusp(whFrontLeft)
-	calcSusp(whFrontRight)
-	calcSusp(whBackLeft)
-	calcSusp(whBackRight)
+#	if whFrontLeft.is_colliding():
+#		calcSusp(whFrontLeft)
+#	if whFrontRight.is_colliding():	
+#		calcSusp(whFrontRight)
+#	if whBackLeft.is_colliding():	
+#		calcSusp(whBackLeft)
+#	if whBackRight.is_colliding():	
+#		calcSusp(whBackRight)
 
 
 func calcDrag():
@@ -52,18 +62,22 @@ func calcDrag():
 func calcAccel():
 	pass
 
+
+
+
+
 func calcSusp(wheel):
 	var tireSpringDirection = wheel.get_global_transform().basis.y
-	var tireWorldVel = getPointVelocity(wheel.position)
+	var tireWorldVel = getPointVelocity(wheel.position)	#or global_transform?
 	
 	var coliisionPointDistance = getRayCastLength(wheel)
 	print("distance ", wheel.name, " = ", coliisionPointDistance)
 	var offset = 4 - coliisionPointDistance
 	print("offset = ", offset)
-	if offset <=5 && offset >=-5 :
-		var velocityWheel = tireSpringDirection.dot(tireWorldVel)
-		var force = (offset*20) - (velocityWheel*15)
-		apply_force(tireSpringDirection*force, wheel.position)
+#	if offset <=5 && offset >=-5 :
+	var velocityWheel = tireSpringDirection.dot(tireWorldVel)
+	var force = (offset*20) - (velocityWheel*15)
+	apply_force(tireSpringDirection*force, wheel.position)
 	
 
 func getRayCastLength(raycast):

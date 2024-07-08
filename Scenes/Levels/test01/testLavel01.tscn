@@ -105,4 +105,4 @@ transform = Transform3D(0.904363, -0.0221314, 0.426185, 0.0229525, 0.999731, 0.0
 size = Vector3(10.4308, 1, 2.77271)
 
 [node name="Node3D" parent="." instance=ExtResource("2_1kglv")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.78008, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.11629, 0)
