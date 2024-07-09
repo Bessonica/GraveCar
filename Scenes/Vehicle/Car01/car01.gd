@@ -13,11 +13,19 @@ var MaxSpeed = Vector3(300, 300, 300)
 @onready var whBackRight = $Wheels/RayCast3D3backRight
 
 
-@export_category("car properties")
+@export_category("wheel properties")
 @export var suspensionRestDistance: float = 0.5
 @export var springStrength: float = 10
 @export var springDamper: float = 1
 @export var wheelRadius: float = 0.33
+
+
+@export_category("car properties")
+@export var enginePower: float
+
+var accelInput
+
+
 
 var drag = 0.99
 # Called when the node enters the scene tree for the first time.
@@ -28,6 +36,9 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
+	accelInput = Input.get_axis("Backward", "Forward")
+	
+	
 	MoveForce += Input.get_axis(&"Backward", &"Forward") * global_transform.basis.z * delta * Speed
 	
 	var steer = Input.get_axis("Right", "Left")* global_transform.basis.z * 5 

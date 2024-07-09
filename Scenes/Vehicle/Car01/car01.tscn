@@ -11,10 +11,10 @@ size = Vector3(1.59406, 0.546021, 3.09467)
 
 [node name="Car01" type="RigidBody3D"]
 mass = 10.0
-center_of_mass_mode = 1
 script = ExtResource("1_3vuuq")
 springStrength = 100.0
-springDamper = 5.0
+springDamper = 8.0
+enginePower = 20.0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("BoxMesh_5bfyl")
@@ -24,7 +24,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000946045, 0.00494385, 0.0
 shape = SubResource("BoxShape3D_g0v00")
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(0.976672, 0.0584682, -0.206622, 0, 0.962218, 0.27228, 0.214735, -0.265929, 0.939772, -1.27534, 1.65462, 6.25217)
+transform = Transform3D(1, 0, 0, 0, 0.997151, 0.0754313, 0, -0.0754312, 0.997151, 0.0112439, 1.1875, 0.908629)
 current = true
 
 [node name="Wheels" type="Node3D" parent="."]
@@ -44,10 +44,12 @@ script = ExtResource("2_qosmn")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.57, 0, 1.2)
 target_position = Vector3(0, -0.8, 0)
 script = ExtResource("2_qosmn")
+canAccel = true
 
 [node name="RayCast3D3backRight" type="RayCast3D" parent="Wheels"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.57, 0, 1.2)
 target_position = Vector3(0, -0.8, 0)
 script = ExtResource("2_qosmn")
+canAccel = true
 
 [node name="CenterOfMass" type="Node3D" parent="."]

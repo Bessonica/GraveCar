@@ -69,6 +69,7 @@ size = Vector3(6.77713, 15.4348, 72.8408)
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.805525, 0.592561, 0, -0.592561, 0.805525, 0, 14.4673, 21.3899)
+current = true
 fov = 99.0
 
 [node name="RigidBody3D" type="RigidBody3D" parent="."]
@@ -106,3 +107,7 @@ size = Vector3(10.4308, 1, 2.77271)
 
 [node name="Node3D" parent="." instance=ExtResource("2_1kglv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.11629, 0)
+
+[node name="Camera3D2" type="Camera3D" parent="."]
+transform = Transform3D(-0.06879, 0.471535, -0.87916, 0.0367829, 0.881847, 0.470098, 0.996953, 0, -0.0780067, -8.10185, 6.04965, 0)
+fov = 95.9
